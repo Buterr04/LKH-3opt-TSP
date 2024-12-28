@@ -102,8 +102,11 @@ cities = [
 
 # 使用LKH算法解决TSP问题
 best_route, best_distance = lkh_algorithm(cities)
-best_route.append(best_route[0])
-best_distance += euclidean_distance(cities[best_route[-2]], cities[best_route[-1]])
+best_route.append(best_route[0]) # 算法给出的路径并未包括起点，添加回到起点的路径
+# best_distance += euclidean_distance(cities[best_route[-2]], cities[best_route[-1]])
+# 展示时有失误，最后一个城市和第一个城市的距离重复进行计算，导致最终结果偏长
+print(best_route[-1], best_route[-2])
+print(euclidean_distance(cities[best_route[-2]], cities[best_route[-1]]))
 print("最佳路线:", best_route)
 print("最佳距离:", best_distance)
 time_end = time.time()
